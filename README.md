@@ -1,5 +1,7 @@
 # CovidApp
 
+Covid-App(in progress) is built using MEAN stack
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
 
 ## Development server
