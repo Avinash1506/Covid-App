@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <select
+        (change)="getState($event)"
+        class="custom-select select-picker mt-3 empty"
+      >
+        <option value="" selected disabled>Select a state</option>
+        <!-- <option value="Monday" class="data-icon">Monday</option>
+<option value="Tuesday">Tuesday</option>
+<option value="Wednesday">Wednesday</option>
+<option value="Thursday">Thursday</option>
+<option value="Friday">Friday</option> -->
+        <option
+          [value]="state['state_id']"
+          *ngFor="let state of statesArray"
+          [selected]="districtints == state['state_name']"
+        >
+          {{ state["state_name"] }}
+        </option>
+      </select>
+      <select
+        (change)="getDistrict($event)"
+        class="custom-select select-picker mt-3 empty"
+        [disabled]="!isFilledState"
+      >
+        <option value="" selected>Select a District</option>
+        <option
+          [value]="district['district_id']"
+          *ngFor="let district of districtsArray"
+          [selected]="districtints == district['district_name']"
+        >
+          {{ district["district_name"] }}
+        </option>
+      </select>
+      <button
+        class="btn btn-primary mt-2 float-end"
+        (click)="navigateTo1()"
+        [disabled]="!isFilledDistrict"
+      >
+        Submit
+      </button>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+
+  <nav aria-label="List of centers" *ngIf="displayPagination" class="mt-2">
+    <div class="h-100">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+            >Previous</a
+          >
+        </li>
+        <li class="page-item">
+          <a class="page-link" routerLink="day1">Day-1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" routerLink="day2">Day-2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" routerLink="day3">Day-3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" routerLink="day4">Day-4</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" routerLink="day5">Day-5</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" routerLink="day6">Day-6</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" routerLink="day7">Day-7</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

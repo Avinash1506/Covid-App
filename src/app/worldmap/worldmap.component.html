@@ -1,0 +1,88 @@
+<!-- <p>map works!</p> -->
+<div class="container">
+  <div id="mapid"></div>
+  <div id="data">
+    <div
+      style="
+        background: #ffeda0;
+        width: 30px;
+        height: 15px;
+        border-style: none;
+        display: inline-block;
+      "
+    ></div>
+    0-500,000<br />
+    <div
+      style="
+        background: #fc4e2a;
+        width: 30px;
+        height: 15px;
+        border-style: none;
+        display: inline-block;
+      "
+    ></div>
+    500,001-1,000,000<br />
+    <div
+      style="
+        background: #e31a1c;
+        width: 30px;
+        height: 15px;
+        border-style: none;
+        display: inline-block;
+      "
+    ></div>
+    1,000,001-4,000,000<br />
+    <div
+      style="
+        background: #bd0010;
+        width: 30px;
+        height: 15px;
+        border-style: none;
+        display: inline-block;
+      "
+    ></div>
+    4,000,001-15,00,000<br />
+    <div
+      style="
+        background: #800026;
+        width: 30px;
+        height: 15px;
+        border-style: none;
+        display: inline-block;
+      "
+    ></div>
+    15,00,000+<br />
+  </div>
+  <br />
+  <br />
+  <br />
+  <div class="cards">
+    <div class="row">
+      <div class="col-lg-6 mb-3">
+        <div class="card danger">
+          <div class="text-center">
+            <h2>Cases:</h2>
+            <h3>{{ totalCases }}</h3>
+          </div>
+          <!-- <hr /> -->
+          <h4 class="text-center text-danger">
+            <fa-icon [icon]="faArrowUp" class="mr-2"></fa-icon>{{ newCases }}
+          </h4>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card secondary">
+          <div class="text-center">
+            <h2>Deaths:</h2>
+            <h3>{{ totalDeaths }}</h3>
+          </div>
+          <!-- <hr /> -->
+          <h4 class="text-center text-danger">
+            <fa-icon [icon]="faArrowUp" class="mr-2"></fa-icon>{{ newDeaths }}
+          </h4>
+        </div>
+        <!-- Deaths:{{ totalDeaths }} -->
+      </div>
+    </div>
+  </div>
+</div>

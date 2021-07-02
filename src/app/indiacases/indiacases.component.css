@@ -1,0 +1,92 @@
+.btn {
+  border-radius: 50%;
+  box-shadow: 10px 10px 20px grey;
+  background-color: #2a6f97;
+  color: #affc41;
+}
+.topSpace {
+  padding-top: 5px;
+}
+.column {
+  float: left;
+  width: 25%;
+  padding: 0px 10px;
+}
+.forCards {
+  margin-top: 35px;
+  margin-bottom: 50px;
+}
+/* tbody {
+    overflow: scroll;
+  } */
+.scrolling {
+  overflow: auto;
+}
+.breadcrumb {
+  background-color: rgb(214, 208, 208);
+}
+/* .cardEffects {
+    box-shadow: 10px 10px 5px grey;
+  } */
+/* .card1,
+  .card2 {
+    transform: translate(-300%);
+  }
+  .card3,
+  .card4 {
+    transform: translate(300%);
+  } */
+/* .forCards {
+    transform: translate(-500%) scale(0.95);
+  }
+  .forCards.active {
+    transform: translate(0%) scale(1);
+  } */
+.card:hover {
+  /* box-shadow: 0px 8px 35px grey; */
+  box-shadow: 0px 5px 30px grey;
+  /* background-color: red; */
+}
+.card {
+  /* box-shadow: 0px 3px 10px grey; */
+  box-shadow: 0px 2px 5px grey;
+  /* border-radius: 20%; */
+}
+.primary:hover {
+  background-color: rgb(190, 232, 248);
+}
+.success:hover {
+  background-color: rgb(213, 243, 213);
+}
+.danger:hover {
+  background-color: rgb(255, 204, 204);
+}
+.secondary:hover {
+  background-color: rgb(216, 210, 210);
+}
+/* .hover1:hover {
+    background-color: rgb(190, 232, 248);
+  }
+  .hover2:hover {
+    background-color: rgb(213, 243, 213);
+  } */
+.hover1:hover,
+.hover2:hover,
+.hover3:hover {
+  background-color: rgb(255, 204, 204);
+}
+.hover4:hover {
+  background-color: rgb(213, 243, 213);
+}
+.table {
+  box-shadow: 0px 10px 30px grey;
+}
+/* table.table-bordered > thead {
+    border: 1px solid red;
+  }
+  table.table-bordered > tbody > tr > td {
+    border: 1px solid red;
+  } */
+/* table.table-bordered > thead > tbody > tr > th {
+    border: 1px solid blue;
+  } */

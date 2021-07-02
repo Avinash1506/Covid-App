@@ -1,0 +1,248 @@
+<div class="container">
+  <!-- Button trigger unauthorized access modal -->
+  <button
+    type="button"
+    id="bt"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#unauthorizedaccess"
+    hidden
+  >
+    Launch demo modal
+  </button>
+
+  <!-- Button trigger user addition modal -->
+  <button
+    type="button"
+    id="useradditionbtn"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#useraddition"
+    hidden
+  >
+    Launch demo modal
+  </button>
+
+  <!-- Modal for unauthorized access-->
+  <div
+    class="modal fade"
+    id="unauthorizedaccess"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Unauthorized Access
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="navigateToLogin()"
+          ></button>
+        </div>
+        <div class="modal-body">You need to login before accessing this</div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            (click)="navigateToLogin()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for entering names -->
+  <div
+    class="modal fade"
+    id="useraddition"
+    tabindex="-1"
+    aria-labelledby="useradditionLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enter User Details</h5>
+        </div>
+        <div class="modal-body">
+          <form
+            #uservaccinedata="ngForm"
+            (ngModel)="submitData(uservaccinedata.value)"
+          >
+            <div class="row">
+              <div class="form-floating mb-3 col-sm-6">
+                <input
+                  type="text"
+                  name="firstname"
+                  ngModel
+                  required
+                  class="form-control textstyle"
+                  id="firstname"
+                  #firstname1="ngModel"
+                  placeholder="First Name"
+                  [class.is-invalid]="firstname1.invalid && firstname1.touched"
+                />
+                <label for="floatingInput" class="ml-3"
+                  ><fa-icon [icon]="faPhoneAlt" class="mr-2"></fa-icon>First
+                  Name <span class="text-danger">*</span></label
+                >
+                <span
+                  class="invalid-feedback"
+                  *ngIf="firstname1.invalid && firstname1.touched"
+                  >First Name is required</span
+                >
+              </div>
+
+              <div class="col-sm-6 form-floating">
+                <input
+                  type="text"
+                  name="lastname"
+                  ngModel
+                  class="form-control textstyle"
+                  #lastname1="ngModel"
+                  id="lastname"
+                  placeholder="Last Name"
+                />
+                <label for="floatingInput" class="ml-3"
+                  ><fa-icon [icon]="faUser" class="mr-2"></fa-icon>Last
+                  Name</label
+                >
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-floating mb-3 col-sm-6">
+                <input
+                  type="text"
+                  name="age"
+                  ngModel
+                  required
+                  class="form-control textstyle"
+                  #age1="ngModel"
+                  placeholder="Age"
+                  id="age"
+                  [class.is-invalid]="age1.invalid && age1.touched"
+                />
+                <label for="floatingInput" class="ml-3"
+                  ><fa-icon [icon]="faPhoneAlt" class="mr-2"></fa-icon>Age
+                  <span class="text-danger">*</span></label
+                >
+                <span
+                  class="invalid-feedback"
+                  *ngIf="age1.invalid && age1.touched"
+                  >Age is required</span
+                >
+              </div>
+
+              <div class="col-sm-6 form-floating">
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control textstyle"
+                  id="username"
+                  ngModel
+                  required
+                  #username1="ngModel"
+                  placeholder="User Name"
+                  [class.is-invalid]="username1.invalid && username1.touched"
+                />
+                <label for="floatingInput" class="ml-3"
+                  ><fa-icon [icon]="faUser" class="mr-2"></fa-icon>Username
+                  <span class="text-danger">*</span></label
+                >
+                <span
+                  class="invalid-feedback ml-3"
+                  *ngIf="username1.invalid && username1.touched"
+                  >Username is required</span
+                >
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              (click)="adddata()"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <div class="accordion" id="accordionExample">
+        <div
+          *ngFor="let users of userDetails; let i = index"
+          [attr.data-index]="i"
+        >
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne{{ i }}">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne{{ i }}"
+                aria-expanded="true"
+                aria-controls="collapseOne{{ i }}"
+              >
+                {{ users.firstname + " " + users.lastname }}
+              </button>
+            </h2>
+            <div
+              id="collapseOne{{ i }}"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingOne{{ i }}"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <strong>First Dose:</strong><br />
+                    <div
+                      *ngIf="users['firstdose'].length !== 0; else elseblock"
+                    ></div>
+                    <ng-template #elseblock> First Dose not taken </ng-template>
+                  </div>
+                  <div class="col-sm-6">
+                    <strong>Second Dose:</strong><br />
+                    <div
+                      *ngIf="users['seconddose'].length !== 0; else elseblock1"
+                    ></div>
+                    <ng-template #elseblock1>
+                      Second Dose not taken
+                    </ng-template>
+                  </div>
+                </div>
+                <div>
+                <button class="btn btn-primary mx-auto d-block" (click)="slotbooking(i+1)">Book Slot</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="btn btn-primary btn-circle mx-auto d-block mt-2 adduser"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+        data-bs-toggle="modal"
+        data-bs-target="#useraddition"
+        title="Add User"
+      >
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>

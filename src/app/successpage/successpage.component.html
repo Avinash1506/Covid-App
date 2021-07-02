@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="display-4 text-center aligning">
+    <div *ngIf="firstDose && !secondDose">
+      <fa-icon [icon]="faCheckCircle" class="text-success display-1"></fa-icon
+      ><br />
+      First Dose Registration is successful <br />
+      <div>
+        <button
+          class="btn btn-primary d-block mx-auto"
+          (click)="navigateToCases()"
+        >
+          OK..
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!firstDose && secondDose">
+      <fa-icon [icon]="faCheckCircle" class="text-success display-1"></fa-icon
+      ><br />
+      Second Dose Registration is successful <br />
+      <div>
+        <button
+          class="btn btn-primary d-block mx-auto"
+          (click)="navigateToCases()"
+        >
+          OK..
+        </button>
+      </div>
+    </div>
+    <div *ngIf="firstDose && secondDose">
+      <fa-icon [icon]="faTimes" class="text-danger display-1"></fa-icon><br />
+      Both the doses are already taken <br />
+      <div>
+        <button
+          class="btn btn-primary d-block mx-auto"
+          (click)="navigateToCases()"
+        >
+          OK..
+        </button>
+      </div>
+    </div>
+    <div *ngIf="vaccinesNotSame">
+      <fa-icon [icon]="faTimes" class="text-danger display-1"></fa-icon><br />
+      Vaccines are not matching <br />
+      Vaccine taken during first dose is {{ firstDoseVaccine }} <br />
+      <div>
+        <button
+          class="btn btn-primary d-block mx-auto"
+          (click)="navigateToCases()"
+        >
+          OK..
+        </button>
+      </div>
+    </div>
+    <div *ngIf="lessNoOfDays">
+      <fa-icon [icon]="faTimes" class="text-danger display-1"></fa-icon><br />
+      You need to wait for {{ remainingDays }} more days to take your second
+      dose <br />
+      <div>
+        <button
+          class="btn btn-primary d-block mx-auto"
+          (click)="navigateToCases()"
+        >
+          OK..
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

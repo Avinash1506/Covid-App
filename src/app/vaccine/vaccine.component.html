@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="display-4 text-center mt-2">
+    <fa-icon [icon]="faSyringe" class="mr-2"></fa-icon>Vaccine Details
+  </div>
+  <table class="table table-bordered table-striped mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>People</th>
+        <th>First Dose</th>
+        <th>Second Dose</th>
+      </tr>
+    </thead>
+    <tbody class="table-hover">
+      <tr>
+        <td class="table-primary">Over 60 Years</td>
+        <td class="table-success">
+          {{ greaterThan60FirstDose | number }}
+        </td>
+        <td class="table-success">{{ greaterThan60SecondDose | number }}</td>
+      </tr>
+      <tr>
+        <td class="table-primary">Over 45 Years</td>
+        <td class="table-success">{{ greaterThan45FirstDose | number }}</td>
+        <td class="table-success">{{ greaterThan45SecondDose | number }}</td>
+      </tr>
+      <tr>
+        <td class="table-primary">Front line workers</td>
+        <td class="table-success">{{ frontlineworkersFirstDose | number }}</td>
+        <td class="table-success">{{ frontlineworkersSecondDose }}</td>
+      </tr>
+      <tr>
+        <td class="table-primary">Healthcare workers</td>
+        <td class="table-success">{{ healthlineworkersFirstDose | number }}</td>
+        <td class="table-success">
+          {{ healthlineworkersSecondDose | number }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="display-4 text-center text-warning">
+    <fa-icon [icon]="faChartBar" class="mr-2"></fa-icon>Bar Graph Representing
+    Vaccine Data
+  </div>
+  <div class="styles mt-3">
+    <canvas id="canvas"></canvas>
+  </div>
+</div>

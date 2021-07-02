@@ -1,0 +1,50 @@
+<div class="row">
+    <!-- <div *ngFor="let val of mainDetailsArray"> -->
+    <div class="col-lg-4 mt-3" *ngFor="let val of detailsOfDay7">
+      <div class="card mt-3 h-100">
+        <div class="card-header">
+          <strong>Hospital Name: </strong>{{ val["centername"] }}
+        </div>
+        <div class="card-body mx-auto">
+          <tr>
+            <td class="text-right">
+              <strong class="mr-1">Vaccine:</strong>
+            </td>
+            <td class="text-left">{{ val["vaccine_name"] }}</td>
+          </tr>
+          <tr>
+            <td class="text-right"><strong class="mr-1">Date:</strong></td>
+            <td class="text-left">{{ val["date"] }}</td>
+          </tr>
+          <tr>
+            <td class="text-right">
+              <strong class="mr-1">Capacity:</strong>
+            </td>
+            <td class="text-left">{{ val["dose1_capacity"] }}</td>
+          </tr>
+          <tr>
+            <td class="text-right"><strong class="mr-1">Fee:</strong></td>
+            <td class="text-left">{{ val["vaccine_cost"] }}</td>
+          </tr>
+          <tr>
+            <td class="text-right">
+              <strong class="mr-1">District:</strong>
+            </td>
+            <td class="text-left">{{ val["district"] }}</td>
+          </tr>
+          <!-- <tr>
+            <td class="text-right"><strong class="mr-1">State:</strong></td>
+            <td class="text-left">{{ val["state_name"] }}</td>
+          </tr> -->
+          <button
+            class="btn btn-primary"
+            (click)="bookAVaccine(val['center_id'])"
+          >
+            Book a vaccine
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+  

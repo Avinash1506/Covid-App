@@ -1,0 +1,123 @@
+<div class="container topSpace">
+  <nav aria-label="breadcrumb" *ngIf="!(state == 'no state')" class="bg-none">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="" (click)="clearState()">India</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">{{ state }}</li>
+    </ol>
+  </nav>
+  <div id="google_translate_element"></div>
+  <div class="text-center display-4 text-success topSpace" *ngIf="country">
+    Covid Cases Distribution in India
+  </div>
+  <div class="text-center display-4 text-success" *ngIf="!country">
+    Covid Cases Distribution in {{ stateName }}
+  </div>
+  <div class="forCards">
+    <div class="text-center">
+      <div class="row">
+        <div class="col-sm-3">
+          <!-- <div class="card11"> -->
+          <div class="card card1 cardEffects text-danger h-100 danger">
+            <h2>Active cases:</h2>
+            <h3>{{ active | number }}</h3>
+            <!-- </div> -->
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card card2 cardEffects text-primary h-100 primary">
+            <h2>Total cases:</h2>
+            <h3>{{ total | number }}</h3>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card card3 cardEffects text-secondary h-100 secondary">
+            <h2>Total deaths:</h2>
+            <h3>{{ deaths | number }}</h3>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card card4 cardEffects text-success h-100 success">
+            <h2>Total Recovered:</h2>
+            <h3>{{ recovered | number }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="forTables mt-4" *ngIf="country; else elseState">
+        <div class="forCards">
+          <div class="row text-center">
+            <div class="col-sm-4">
+              <div class="card card2 cardEffects text-danger h-100 danger">
+                <h2>New cases:</h2>
+                <h3>{{ newConfirmed | number }}</h3>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div
+                class="card card3 cardEffects text-secondary h-100 secondary"
+              >
+                <h2>New deaths:</h2>
+                <h3>{{ newDeceased | number }}</h3>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card card4 cardEffects text-success h-100 success">
+                <h2>New Recovered:</h2>
+                <h3>{{ newRecovered | number }}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scrolling">
+          <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+              <tr>
+                <th>State</th>
+                <th>Total</th>
+                <th>Active</th>
+                <th>Deaths</th>
+                <th>Recovered</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let data of arr" class="table-hover">
+              <tr>
+                <td class="table-primary">{{ data.state }}</td>
+                <td class="table-danger hover1">
+                  {{ data.confirmed | number }}
+                </td>
+                <td class="table-danger hover2">{{ data.active | number }}</td>
+                <td class="table-danger hover3">{{ data.deaths | number }}</td>
+                <td class="table-success hover4">
+                  {{ data.recovered | number }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <ng-template #elseState>
+        <table class="table table-bordered table-striped mt-4">
+          <thead class="table-dark">
+            <tr>
+              <th>District</th>
+              <th>Total</th>
+              <th>Active</th>
+              <th>Deaths</th>
+              <th>Recovered</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let val of arr" class="table-hover">
+            <tr>
+              <td class="table-primary">{{ val.district }}</td>
+              <td class="table-danger">{{ val.total | number }}</td>
+              <td class="table-danger">{{ val.active | number }}</td>
+              <td class="table-danger">{{ val.deaths | number }}</td>
+              <td class="table-success">{{ val.recovered | number }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </div>
+  </div>
+</div>

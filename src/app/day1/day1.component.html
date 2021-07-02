@@ -1,0 +1,509 @@
+<div class="row">
+  <div *ngFor="let val of day1ObjArray" class="col-lg-4 mt-3">
+    <div>
+      <!-- <div class="card mt-3 h-100">
+      <div class="card-header">
+        {{ day1Obj["center_name"] }}
+      </div>
+      <div class="card-body text-start d-block"> -->
+      <!-- <tr>
+          <td class="text-right">
+            <strong class="mr-1">Vaccine:</strong>
+          </td>
+          <td class="text-left">{{ val["vaccine_name"] }}</td>
+        </tr> -->
+
+      <!-- <tr>
+          <td class="text-right"><strong class="mr-1">Fee:</strong></td>
+          <td class="text-left">{{ val["vaccine_cost"] }}</td>
+        </tr> -->
+
+      <!-- <tr>
+          <td class="text-right"><strong class="mr-1">Address:</strong></td>
+          <td class="text-left">{{ day1Obj["center_address"] }}</td>
+        </tr> -->
+      <!-- <tr> -->
+      <!-- <td class="text-right"> -->
+      <!-- <dl>
+          <dt>Address:</dt>
+          <dd>{{ day1Obj["center_address"] }}</dd>
+        </dl> -->
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front text-center d-flex display-7">
+            Name: {{ val["center_name"] }}<br />
+            Address: {{ val["center_address"] }}
+          </div>
+          <div class="flip-card-back">
+            <div>
+              <div class="row">
+                <div class="verticalline"></div>
+                <div class="col-6">
+                  <div
+                    *ngIf="
+                      val['covaxin']['dose1_capacity_18plus'] != 0 ||
+                        val['covaxin']['dose2_capacity_18plus'] != 0 ||
+                        val['covaxin']['dose1_capacity_45plus'] != 0 ||
+                        val['covaxin']['dose2_capacity_45plus'] != 0;
+                      else elseblock
+                    "
+                  >
+                    <strong
+                      class="mr-1 display-3 text-center"
+                      *ngIf="displayCovaxin"
+                    >
+                      Covaxin:
+                    </strong>
+
+                    <div>
+                      <!-- Dose-1 -->
+                      <div
+                        class="display-3"
+                        *ngIf="
+                          val['covaxin']['dose1_capacity_18plus'] != 0 ||
+                          val['covaxin']['dose1_capacity_45plus'] != 0
+                        "
+                      >
+                        <strong class="left-margin-2 text-center"
+                          >Dose-1:</strong
+                        >
+                      </div>
+                      <div
+                        class="display-3 left-margin-4"
+                        *ngIf="val['covaxin']['dose1_capacity_18plus'] != 0"
+                      >
+                        <strong>18+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'covaxin',
+                              'dose1',
+                              '18plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['covaxin']['dose1_capacity_18plus'] > 20
+                              ? '#70e000'
+                              : val['covaxin']['dose1_capacity_18plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["covaxin"]["dose1_capacity_18plus"] }}
+                        </button>
+                      </div>
+                      <div
+                        class="display-3"
+                        *ngIf="val['covaxin']['dose1_capacity_45plus'] != 0"
+                      >
+                        <strong class="left-margin-4">45+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'covaxin',
+                              'dose1',
+                              '45plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['covaxin']['dose1_capacity_45plus'] > 20
+                              ? '#70e000'
+                              : val['covaxin']['dose1_capacity_45plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["covaxin"]["dose1_capacity_45plus"] }}
+                        </button>
+                      </div>
+                      <!-- Dose-2 -->
+                      <div
+                        class="display-3"
+                        *ngIf="
+                          val['covaxin']['dose2_capacity_18plus'] != 0 ||
+                          val['covaxin']['dose2_capacity_45plus'] != 0
+                        "
+                      >
+                        <strong class="left-margin-2">Dose-2:</strong>
+                      </div>
+                      <div
+                        class="display-3"
+                        *ngIf="val['covaxin']['dose2_capacity_18plus'] != 0"
+                      >
+                        <strong class="left-margin-4">18+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'covaxin',
+                              'dose2',
+                              '18plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['covaxin']['dose2_capacity_18plus'] > 20
+                              ? '#70e000'
+                              : val['covaxin']['dose2_capacity_18plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["covaxin"]["dose2_capacity_18plus"] }}
+                        </button>
+                      </div>
+                      <div
+                        class="display-3"
+                        *ngIf="val['covaxin']['dose2_capacity_45plus'] != 0"
+                      >
+                        <strong class="left-margin-4">45+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'covaxin',
+                              'dose2',
+                              '45plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['covaxin']['dose2_capacity_45plus'] > 20
+                              ? '#70e000'
+                              : val['covaxin']['dose2_capacity_45plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["covaxin"]["dose2_capacity_45plus"] }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-template #elseblock>
+                    <strong class="mr-1 display-3"> Covaxin: </strong>
+                    <div class="display-3 left-margin-2">NA</div>
+                  </ng-template>
+                </div>
+                <!-- Covishield -->
+                <div class="col-6">
+                  <div
+                    *ngIf="
+                      val['covishield']['dose1_capacity_18plus'] != 0 ||
+                        val['covishield']['dose2_capacity_18plus'] != 0 ||
+                        val['covishield']['dose1_capacity_45plus'] != 0 ||
+                        val['covishield']['dose2_capacity_45plus'] != 0;
+                      else elseblock1
+                    "
+                  >
+                    <strong class="mr-1 display-3"> Covishield: </strong>
+
+                    <div>
+                      <!-- Dose-1 -->
+                      <div
+                        class="left-margin-2 display-3"
+                        *ngIf="
+                          val['covishield']['dose1_capacity_18plus'] != 0 ||
+                          val['covishield']['dose1_capacity_45plus'] != 0
+                        "
+                      >
+                        <strong>Dose-1:</strong>
+                      </div>
+                      <div
+                        class="left-margin-4 display-3"
+                        *ngIf="val['covishield']['dose1_capacity_18plus'] != 0"
+                      >
+                        <strong>18+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'covishield',
+                              'dose1',
+                              '18plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['covishield']['dose1_capacity_18plus'] > 20
+                              ? '#70e000'
+                              : val['covishield']['dose1_capacity_18plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["covishield"]["dose1_capacity_18plus"] }}
+                        </button>
+                      </div>
+                      <div
+                        class="left-margin-4 display-3"
+                        *ngIf="val['covishield']['dose1_capacity_45plus'] != 0"
+                      >
+                        <strong>45+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'covishield',
+                              'dose1',
+                              '45plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['covishield']['dose1_capacity_45plus'] > 20
+                              ? '#70e000'
+                              : val['covishield']['dose1_capacity_45plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["covishield"]["dose1_capacity_45plus"] }}
+                        </button>
+                      </div>
+                      <!-- Dose-2 -->
+                      <div
+                        class="left-margin-2 display-3"
+                        *ngIf="
+                          val['covishield']['dose2_capacity_18plus'] != 0 ||
+                          val['covishield']['dose2_capacity_45plus'] != 0
+                        "
+                      >
+                        <strong>Dose-2:</strong>
+                      </div>
+                      <div
+                        class="left-margin-4 display-3"
+                        *ngIf="val['covishield']['dose2_capacity_18plus'] != 0"
+                      >
+                        <strong>18+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'covishield',
+                              'dose2',
+                              '18plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['covishield']['dose2_capacity_18plus'] > 20
+                              ? '#70e000'
+                              : val['covishield']['dose2_capacity_18plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["covishield"]["dose2_capacity_18plus"] }}
+                        </button>
+                      </div>
+                      <div
+                        class="left-margin-4 display-3"
+                        *ngIf="val['covishield']['dose2_capacity_45plus'] != 0"
+                      >
+                        <strong>45+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'covishield',
+                              'dose2',
+                              '45plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['covishield']['dose2_capacity_45plus'] > 20
+                              ? '#70e000'
+                              : val['covishield']['dose2_capacity_45plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["covishield"]["dose2_capacity_45plus"] }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-template #elseblock1>
+                    <strong class="mr-1 display-3"> Covishield: </strong>
+                    <div class="left-margin-2 display-3">NA</div>
+                  </ng-template>
+                </div>
+              </div>
+              <!-- Sputnikv -->
+              <div class="row">
+                <div class="col-12">
+                  <div
+                    *ngIf="
+                      val['sputnikv']['dose1_capacity_18plus'] != 0 ||
+                        val['sputnikv']['dose2_capacity_18plus'] != 0 ||
+                        val['sputnikv']['dose1_capacity_45plus'] != 0 ||
+                        val['sputnikv']['dose2_capacity_45plus'] != 0;
+                      else elseblock2
+                    "
+                  >
+                    <strong class="mr-1 display-3">
+                      <hr />
+                      Sputnik V:
+                    </strong>
+
+                    <div>
+                      <!-- Dose-1 -->
+                      <div
+                        class="left-margin-2 display-3"
+                        *ngIf="
+                          val['sputnikv']['dose1_capacity_18plus'] != 0 ||
+                          val['sputnikv']['dose1_capacity_45plus'] != 0
+                        "
+                      >
+                        <strong>Dose-1:</strong>
+                      </div>
+                      <div
+                        class="left-margin-4 display-3"
+                        *ngIf="val['sputnikv']['dose1_capacity_18plus'] != 0"
+                      >
+                        <strong>18+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'sputnikv',
+                              'dose1',
+                              '18plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['sputnikv']['dose1_capacity_18plus'] > 20
+                              ? '#70e000'
+                              : val['sputnikv']['dose1_capacity_18plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["sputnikv"]["dose1_capacity_18plus"] }}
+                        </button>
+                      </div>
+                      <div
+                        class="left-margin-4 display-3"
+                        *ngIf="val['sputnikv']['dose1_capacity_45plus'] != 0"
+                      >
+                        <strong>45+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'sputnikv',
+                              'dose1',
+                              '45plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['sputnikv']['dose1_capacity_45plus'] > 20
+                              ? '#70e000'
+                              : val['sputnikv']['dose1_capacity_45plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["sputnikv"]["dose1_capacity_45plus"] }}
+                        </button>
+                      </div>
+                      <!-- Dose-2 -->
+                      <div
+                        class="left-margin-2 display-3"
+                        *ngIf="
+                          val['sputnikv']['dose2_capacity_18plus'] != 0 ||
+                          val['sputnikv']['dose2_capacity_45plus'] != 0
+                        "
+                      >
+                        <strong>Dose-2:</strong>
+                      </div>
+                      <div
+                        class="left-margin-4 display-3"
+                        *ngIf="val['sputnikv']['dose2_capacity_18plus'] != 0"
+                      >
+                        <strong>18+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'sputnikv',
+                              'dose2',
+                              '18plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['sputnikv']['dose2_capacity_18plus'] > 20
+                              ? '#70e000'
+                              : val['sputnikv']['dose2_capacity_18plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["sputnikv"]["dose2_capacity_18plus"] }}
+                        </button>
+                      </div>
+                      <div
+                        class="left-margin-4 display-3"
+                        *ngIf="val['sputnikv']['dose2_capacity_45plus'] != 0"
+                      >
+                        <strong>45+</strong>:
+                        <button
+                          (click)="
+                            bookAVaccine(
+                              val['center_id'],
+                              val['date'],
+                              'sputnikv',
+                              'dose2',
+                              '45plus'
+                            )
+                          "
+                          [style.background-color]="
+                            val['sputnikv']['dose2_capacity_45plus'] > 20
+                              ? '#70e000'
+                              : val['sputnikv']['dose2_capacity_45plus'] > 5
+                              ? '#ffaa00'
+                              : '#d00000'
+                          "
+                        >
+                          {{ val["sputnikv"]["dose2_capacity_45plus"] }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-template #elseblock2>
+                    <strong class="mr-1 display-3">
+                      <hr />
+                      Sputnik V:
+                    </strong>
+                    <div class="left-margin-2 display-3">NA</div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div>
+          <div class="display-7">
+            Name: {{ day1Obj["center_name"] }}<br />
+            Address: {{ day1Obj["center_address"] }}
+          </div>
+        </div> -->
+
+      <!-- </div>
+    </div>
+  </div> -->
+    </div>
+  </div>
+</div>

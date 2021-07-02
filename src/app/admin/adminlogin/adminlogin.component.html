@@ -1,0 +1,69 @@
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <form
+        class="mt-4"
+        #formdata="ngForm"
+        (ngSubmit)="verifyData(formdata.value)"
+      >
+        <div class="card p-0">
+          <div class="card-body p-0">
+            <div class="text-center textbg">Login</div>
+            <!-- <br /> -->
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                name="Username"
+                ngModel
+                required
+                class="form-control"
+                #username="ngModel"
+                placeholder="Username"
+                [class.is-invalid]="username.invalid && username.touched"
+              />
+              <label for="floatingInput"
+                ><fa-icon [icon]="faUser" class="mr-2"></fa-icon>Username
+                <span class="text-danger">*</span></label
+              >
+              <span
+                class="invalid-feedback"
+                *ngIf="username.invalid && username.touched"
+                >Username is required</span
+              >
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                name="password"
+                ngModel
+                required
+                #password1="ngModel"
+                class="form-control"
+                placeholder="Password"
+                [class.is-invalid]="password1.invalid && password1.touched"
+              />
+
+              <label for="floatingInput"
+                ><fa-icon [icon]="faLock" class="mr-2"></fa-icon>Password
+                <span class="text-danger">*</span></label
+              >
+              <span
+                class="invalid-feedback"
+                *ngIf="password1.invalid && password1.touched"
+                >Password is required</span
+              >
+            </div>
+            <button
+              class="btn btn-primary float-right mr-3 mb-3"
+              [disabled]="formdata.invalid"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>

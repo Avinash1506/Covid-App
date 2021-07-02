@@ -1,0 +1,40 @@
+<div class="container">
+  <form #formdata="ngForm" (ngSubmit)="deleteData(formdata.value)">
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control"
+        name="center_id"
+        placeholder="Center Id"
+        required
+        ngModel
+        #centerid1="ngModel"
+        [class.is-invalid]="centerid1.invalid && centerid1.touched"
+      />
+      <!-- <input
+                      type="text"
+                      name="dose1_capacity"
+                      ngModel
+                      required
+                      class="form-control"
+                      #dose1capacity1="ngModel"
+                      placeholder="Capacity For Dose-1"
+                      [class.is-invalid]="
+                        dose1capacity1.invalid && dose1capacity1.touched
+                      "
+                    /> -->
+      <label for="floatingInput"
+        >Center ID<span class="text-danger">*</span></label
+      >
+      <span
+        class="invalid-feedback ml-3"
+        *ngIf="centerid1.invalid && centerid1.touched"
+        >Center ID is required</span
+      >
+    </div>
+    <button class="btn btn-primary float-center d-block mt-3 mr-3 mb-3">
+      <!-- [disabled]="formdata.invalid" -->
+      Submit
+    </button>
+  </form>
+</div>

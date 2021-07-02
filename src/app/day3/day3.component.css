@@ -1,0 +1,9 @@
+.card{
+    background-color: #e4e9fd;
+  background-image: linear-gradient(
+      to bottom right,
+      #EFAB32 10%,
+      #e4e9fd 10% 90%,
+      /* #e4e9fd 50% 75%, #a683e3 66% 99%, */ #7BEE63 90% 100%
+    );
+}

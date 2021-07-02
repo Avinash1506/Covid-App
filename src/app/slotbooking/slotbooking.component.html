@@ -1,0 +1,159 @@
+<div class="container mt-4 text-center">
+  <nav aria-label="breadcrumb" class="bg-none">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/slotbooking">Add User</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Select Center</li>
+    </ol>
+  </nav>
+  <!-- ------------------------------------------------------------------------- -->
+
+  <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="district-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#add"
+        type="button"
+        role="tab"
+        aria-controls="add"
+        aria-selected="false"
+        (click)="navigate('district')"
+      >
+        <!-- <a routerLink="adddata">Add Data</a> -->
+        Search By District
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="pincode-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#update"
+        type="button"
+        role="tab"
+        aria-controls="update"
+        aria-selected="false"
+        (click)="navigate('pincode')"
+      >
+        <!-- <a routerLink="updatedata">Update Data</a> -->
+        Search By Pincode
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content mt-2" id="nav-tabContent">
+    <div
+      class="tab-pane fade show active"
+      role="tabpanel"
+      aria-labelledby="nav-update-tab"
+    >
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <!-- -------------------- -->
+
+  <!-- <tr>
+    <td class="text-right"><strong class="mr-1">Fee:</strong></td>
+    <td class="text-left">val["fee"]</td>
+  </tr>
+  <tr>
+    <td class="text-right"><strong class="mr-1">District:</strong></td>
+    <td class="text-left">val["district_name"]</td>
+  </tr>
+  <tr>
+    <td class="text-right"><strong class="mr-1">State:</strong></td>
+    <td class="text-left">val["state_name"]</td>
+  </tr> -->
+  <!-- 
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mt-3">
+        <div class="card-header">Hospital Name: val["name"]</div>
+        <div class="card-body mx-auto">
+          <tr>
+            <td class="text-right"><strong class="mr-1">Vaccine:</strong></td>
+            <td class="text-left">val["vaccine"]</td>
+          </tr>
+          <tr>
+            <td class="text-right"><strong class="mr-1">Date:</strong></td>
+            <td class="text-left">val["date"]</td>
+          </tr>
+          <tr>
+            <td class="text-right"><strong class="mr-1">Capacity:</strong></td>
+            <td class="text-left">val["available_capacity"]</td>
+          </tr>
+          <tr>
+            <td class="text-right"><strong class="mr-1">Fee:</strong></td>
+            <td class="text-left">val["fee"]</td>
+          </tr>
+          <tr>
+            <td class="text-right"><strong class="mr-1">District:</strong></td>
+            <td class="text-left">val["district_name"]</td>
+          </tr>
+          <tr>
+            <td class="text-right"><strong class="mr-1">State:</strong></td>
+            <td class="text-left">val["state_name"]</td>
+          </tr>
+          <button class="btn btn-primary" (click)="bookAVaccine()">
+            Book a vaccine
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+  <!-- <div class="row">
+            <div class="col-sm-6 text-right">
+              <strong>Vaccine:</strong>
+            </div>
+            <div class="col-sm-6 text-left">{{ val["vaccine"] }}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 text-right">
+              <strong>Date:</strong>
+            </div>
+            <div class="col-sm-6 text-left">{{ val["date"] }}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 text-right">
+              <strong>Capacity:</strong>
+            </div>
+            <div class="col-sm-6 text-left">
+              {{ val["available_capacity"] }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 text-right">
+              <strong>Fee:</strong>
+            </div>
+            <div class="col-sm-6 text-left">{{ val["fee"] }}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 text-right">
+              <strong>District:</strong>
+            </div>
+            <div class="col-sm-6 text-left">{{ val["district_name"] }}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 text-right">
+              <strong>State:</strong>
+            </div>
+            <div class="col-sm-6 text-left">{{ val["state_name"] }}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 text-right"></div>
+            <div class="col-sm-6 text-left">
+              <button class="btn btn-primary" (click)="bookAVaccine()">
+                Book a vaccine
+              </button>
+            </div>
+          </div> -->
+  <!-- <strong>Capacity:</strong> {{ val["available_capacity"] }} <br />
+          <strong>Fee:</strong> {{ val["fee"] }}<br />
+          <strong>district:</strong> {{ val["district_name"] }}<br />
+          <strong>State:</strong> {{ val["state_name"] }} -->
+</div>

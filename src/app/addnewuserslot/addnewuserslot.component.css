@@ -1,0 +1,31 @@
+.adduser {
+  border-radius: 50%;
+  text-align: center;
+}
+.modal{
+  pointer-events: none;
+}
+
+.modal-dialog{
+  pointer-events: all;
+}
+input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  border-radius: 0%;
+}
+input:active {
+  border-color: white;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: 0px 0px orange;
+}
+input:invalid:focus {
+  box-shadow: 0px 0px orange;
+}

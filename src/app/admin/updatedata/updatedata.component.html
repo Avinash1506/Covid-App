@@ -1,0 +1,3098 @@
+<div class="container">
+  <form #formdata="ngForm" (ngSubmit)="getCenterId(formdata.value)">
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control"
+        name="center_id"
+        placeholder="Center Id"
+        required
+        ngModel
+        #centerid1="ngModel"
+        [class.is-invalid]="centerid1.invalid && centerid1.touched"
+      />
+      <!-- <input
+                    type="text"
+                    name="dose1_capacity"
+                    ngModel
+                    required
+                    class="form-control"
+                    #dose1capacity1="ngModel"
+                    placeholder="Capacity For Dose-1"
+                    [class.is-invalid]="
+                      dose1capacity1.invalid && dose1capacity1.touched
+                    "
+                  /> -->
+      <label for="floatingInput"
+        >Center ID<span class="text-danger">*</span></label
+      >
+      <span
+        class="invalid-feedback ml-3"
+        *ngIf="centerid1.invalid && centerid1.touched"
+        >Center ID is required</span
+      >
+    </div>
+    <button class="btn btn-primary float-center d-block mt-3 mr-3 mb-3">
+      <!-- [disabled]="formdata.invalid" -->
+      Submit
+    </button>
+  </form>
+
+  <!--  -->
+  <div class="row mt-5" *ngIf="flag">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <form
+        #formdata="ngForm"
+        (ngSubmit)="updateData(formdata.value)"
+        class="form"
+      >
+        <div class="card p-0">
+          <div class="card-body p-0">
+            <div class="text-center textbg">Update Data</div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="statename"
+                    ngModel
+                    required
+                    class="form-control"
+                    placeholder="Pincode"
+                    #pincode1="ngModel"
+                    [class.is-invalid]="pincode1.invalid && pincode1.touched"
+                    [value]="state_name"
+                    disabled
+                  />
+                  <label for="floatingInput">State </label>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="district"
+                    ngModel
+                    required
+                    class="form-control"
+                    placeholder="Pincode"
+                    #pincode1="ngModel"
+                    [value]="data['district']"
+                    [class.is-invalid]="pincode1.invalid && pincode1.touched"
+                    disabled
+                  />
+                  <label for="floatingInput">District</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="pincode"
+                    ngModel
+                    required
+                    class="form-control"
+                    placeholder="Pincode"
+                    #pincode1="ngModel"
+                    [value]="data['pincode']"
+                    [class.is-invalid]="pincode1.invalid && pincode1.touched"
+                    disabled
+                  />
+                  <label for="floatingInput"
+                    >Pincode <span class="text-danger">*</span></label
+                  >
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="center_id"
+                    ngModel
+                    required
+                    #centerid1="ngModel"
+                    placeholder="Center Id"
+                    class="form-control"
+                    [value]="data['center_id']"
+                    [class.is-invalid]="centerid1.invalid && centerid1.touched"
+                    disabled
+                  />
+                  <label for="floatingInput">Center Id </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="centername"
+                    ngModel
+                    required
+                    class="form-control"
+                    #centername1="ngModel"
+                    placeholder="Center Name"
+                    [value]="data['centername']"
+                    [class.is-invalid]="
+                      centername1.invalid && centername1.touched
+                    "
+                    disabled
+                  />
+                  <label for="floatingInput">Center Name </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="centeraddress"
+                    ngModel
+                    required
+                    class="form-control"
+                    #centeraddress1="ngModel"
+                    placeholder="Center Address"
+                    [value]="data['centeraddress']"
+                    [class.is-invalid]="
+                      centeraddress1.invalid && centeraddress1.touched
+                    "
+                    disabled
+                  />
+                  <label for="floatingInput">Center Address </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="d-inline form-floating">
+                  <div class="mr-1 ml-3 pt-3">
+                    Hospital:<span class="text-danger">*</span>
+                  </div>
+                  <div class="form-check form-check-inline ml-3">
+                    <input
+                      class="form-check-input border"
+                      type="radio"
+                      name="hospital"
+                      id="govt1"
+                      value="government"
+                      checked
+                      required
+                      ngModel
+                      #hospital1="ngModel"
+                      [class.is-invalid]="
+                        hospital1.invalid && hospital1.touched
+                      "
+                      disabled
+                    />
+                    <label class="form-check-label" for="govt1"
+                      >Government</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline ml-3">
+                    <input
+                      class="form-check-input border"
+                      type="radio"
+                      name="hospital"
+                      id="govt2"
+                      value="private"
+                      required
+                      ngModel
+                      #hospital1="ngModel"
+                      [class.is-invalid]="
+                        hospital1.invalid && hospital1.touched
+                      "
+                      disabled
+                    />
+                    <label class="form-check-label" for="govt2">Private</label>
+                  </div>
+                  <span
+                    class="invalid-feedback ml-3"
+                    *ngIf="hospital1.invalid && hospital1.touched"
+                    >Hospital Type is required</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="covaxin_cost"
+                    ngModel
+                    required
+                    class="form-control"
+                    placeholder="Covaxin Cost"
+                    #covaxin1="ngModel"
+                    [class.is-invalid]="covaxin1.invalid && covaxin1.touched"
+                    [value]="covaxin_cost"
+                    disabled
+                  />
+                  <label for="floatingInput"
+                    >Covaxin Cost <span class="text-danger">*</span></label
+                  >
+                  <span
+                    class="invalid-feedback ml-3"
+                    *ngIf="covaxin1.invalid && covaxin1.touched"
+                    >Cost is required</span
+                  >
+                  <!-- </div>
+            </div> -->
+                  <!-- -------------------- -->
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="covishield_cost"
+                    ngModel
+                    required
+                    class="form-control"
+                    placeholder="Covishield Cost"
+                    #covishield1="ngModel"
+                    [class.is-invalid]="
+                      covishield1.invalid && covishield1.touched
+                    "
+                    [value]="covishield_cost"
+                    disabled
+                  />
+                  <label for="floatingInput"
+                    >Covishield Cost <span class="text-danger">*</span></label
+                  >
+                  <span
+                    class="invalid-feedback ml-3"
+                    *ngIf="covishield1.invalid && covishield1.touched"
+                    >Cost is required</span
+                  >
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="sputnikv_cost"
+                    ngModel
+                    required
+                    class="form-control"
+                    placeholder="Sputnik V Cost"
+                    #sputnikv1="ngModel"
+                    [class.is-invalid]="sputnikv1.invalid && sputnikv1.touched"
+                    [value]="sputnikv_cost"
+                    disabled
+                  />
+                  <label for="floatingInput"
+                    >Sputnik V Cost<span class="text-danger">*</span></label
+                  >
+                  <span
+                    class="invalid-feedback ml-3"
+                    *ngIf="sputnikv1.invalid && sputnikv1.touched"
+                    >Cost is required</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Vaccine,age and their total capacity each day -->
+
+            <!-- Outer vaccine details -->
+
+            <div>
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Vaccine:</strong><span class="text-danger">*</span>
+              </div>
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covaxin:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_18+"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_18plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_18+"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_18plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_45+"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_45plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_45+"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_45plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Vaccine name Covishield -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covishield:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_18+"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_18plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_18+"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_18plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_45+"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_45plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_45+"
+                      ngModel
+                      required
+                      class="form-control datename123"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_45plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Check Box for Sputnik V -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Sputnik V:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_18+"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_18plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_18+"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_18plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_45+"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_45plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_45+"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_45plus"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ------------------------------------ -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="date1_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Date"
+                    [value]="date1"
+                    disabled
+                  />
+                  <label for="datedisplay">Date </label>
+                </div>
+              </div>
+            </div>
+            <!-- Day-1 vaccine details -->
+            <div>
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Vaccine:</strong><span class="text-danger">*</span>
+              </div>
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covaxin:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_18+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_18plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_18+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_18plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_45+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_45plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_45+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_45plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Vaccine name Covishield -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covishield:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_18+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_18plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_18+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_18plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_45+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_45plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_45+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_45plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Check Box for Sputnik V -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Sputnik V:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_18+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_18plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_18+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_18plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_45+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_45plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_45+_1"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_45plus_1"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="slots1_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Enter slot
+                        timings"
+                    [value]="slots1"
+                  />
+                  <label for="floatingInput"
+                    >Enter slot timings seperated by comma
+                    <span class="text-danger">*</span></label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Day-2 -->
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="date2_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Date"
+                    [value]="date2"
+                    disabled
+                    #date1111
+                  />
+                  <label for="datedisplay">Date </label>
+                </div>
+              </div>
+            </div>
+            <!-- Day-1 vaccine details -->
+            <div>
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Vaccine:</strong><span class="text-danger">*</span>
+              </div>
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covaxin:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_18+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_18plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_18+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_18plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_45+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_45plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_45+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_45plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Vaccine name Covishield -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covishield:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_18+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_18plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_18+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_18plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_45+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_45plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_45+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_45plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Check Box for Sputnik V -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Sputnik V:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_18+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_18plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_18+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_18plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_45+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_45plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_45+_2"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_45plus_2"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="slots2_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Enter slot
+                        timings"
+                    [value]="slots2"
+                  />
+                  <label for="floatingInput"
+                    >Enter slot timings seperated by comma
+                    <span class="text-danger">*</span></label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Day-3 -->
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="date3_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Date"
+                    [value]="date3"
+                    disabled
+                    #date1111
+                  />
+                  <label for="datedisplay">Date </label>
+                </div>
+              </div>
+            </div>
+            <!-- Day-1 vaccine details -->
+            <div>
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Vaccine:</strong><span class="text-danger">*</span>
+              </div>
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covaxin:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_18+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_18plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_18+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_18plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_45+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_45plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_45+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_45plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Vaccine name Covishield -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covishield:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_18+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_18plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_18+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_18plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_45+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_45plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_45+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_45plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Check Box for Sputnik V -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Sputnik V:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_18+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_18plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_18+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_18plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_45+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_45plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_45+_3"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_45plus_3"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="slots3_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Enter slot
+                        timings"
+                    [value]="slots3"
+                  />
+                  <label for="floatingInput"
+                    >Enter slot timings seperated by comma
+                    <span class="text-danger">*</span></label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Day-4 -->
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="date4_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Date"
+                    [value]="date4"
+                    disabled
+                    #date1111
+                  />
+                  <label for="datedisplay">Date </label>
+                </div>
+              </div>
+            </div>
+            <!-- Day-1 vaccine details -->
+            <div>
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Vaccine:</strong><span class="text-danger">*</span>
+              </div>
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covaxin:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_18+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_18plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_18+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_18plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_45+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_45plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_45+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_45plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Vaccine name Covishield -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covishield:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_18+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_18plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_18+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_18plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_45+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_45plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_45+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_45plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Check Box for Sputnik V -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Sputnik V:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_18+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_18plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_18+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_18plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_45+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_45plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_45+_4"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_45plus_4"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="slots4_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Enter slot
+                        timings"
+                    [value]="slots4"
+                  />
+                  <label for="floatingInput"
+                    >Enter slot timings seperated by comma
+                    <span class="text-danger">*</span></label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Day-5 -->
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="date5_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Date"
+                    [value]="date5"
+                    disabled
+                    #date1111
+                  />
+                  <label for="datedisplay">Date </label>
+                </div>
+              </div>
+            </div>
+            <!-- Day-1 vaccine details -->
+            <div>
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Vaccine:</strong><span class="text-danger">*</span>
+              </div>
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covaxin:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_18+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_18plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_18+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_18plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_45+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_45plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_45+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_45plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Vaccine name Covishield -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covishield:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_18+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_18plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_18+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_18plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_45+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_45plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_45+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_45plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Check Box for Sputnik V -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Sputnik V:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_18+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_18plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_18+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_18plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_45+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_45plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_45+_5"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_45plus_5"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="slots5_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Enter slot
+                        timings"
+                    [value]="slots5"
+                  />
+                  <label for="floatingInput"
+                    >Enter slot timings seperated by comma
+                    <span class="text-danger">*</span></label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Day-6 -->
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="date6_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Date"
+                    [value]="date6"
+                    disabled
+                    #date1111
+                  />
+                  <label for="datedisplay">Date </label>
+                </div>
+              </div>
+            </div>
+            <!-- Day-1 vaccine details -->
+            <div>
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Vaccine:</strong><span class="text-danger">*</span>
+              </div>
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covaxin:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_18+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_18plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_18+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_18plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_45+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_45plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_45+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_45plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Vaccine name Covishield -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covishield:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_18+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_18plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_18+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_18plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_45+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_45plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_45+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_45plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Check Box for Sputnik V -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Sputnik V:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_18+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_18plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_18+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_18plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_45+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_45plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_45+_6"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_45plus_6"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="slots6_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Enter slot
+                        timings"
+                    [value]="slots6"
+                  />
+                  <label for="floatingInput"
+                    >Enter slot timings seperated by comma
+                    <span class="text-danger">*</span></label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Day-7 -->
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="date7_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Date"
+                    [value]="date7"
+                    disabled
+                    #date1111
+                  />
+                  <label for="datedisplay">Date </label>
+                </div>
+              </div>
+            </div>
+            <!-- Day-1 vaccine details -->
+            <div>
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Vaccine:</strong><span class="text-danger">*</span>
+              </div>
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covaxin:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_18+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_18plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_18+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_18plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 18+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covaxin-->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covaxin_45+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covaxin_45plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covaxin_45+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covaxin_45plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covaxin for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covaxin for 45+ is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Vaccine name Covishield -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Covishield:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_18+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_18plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_18+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_18plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Covishield -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_covishield_45+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_covishield_45plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Covshield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_covishield_45+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_covishield_45plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Covishield for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Covishield for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Check Box for Sputnik V -->
+
+              <div class="mr-1 ml-3 pt-3">
+                <strong>Sputnik V:</strong><span class="text-danger">*</span>
+              </div>
+              <!-- Row-2 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_18+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_18plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_18+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_18plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 18+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 18+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row-3 Sputnik V -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose1_capacity_sputnikv_45+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-1"
+                      [value]="dose1_capacity_sputnikv_45plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-1 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-1 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="dose2_capacity_sputnikv_45+_7"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Capacity For Dose-2"
+                      [value]="dose2_capacity_sputnikv_45plus_7"
+                    />
+                    <label for="floatingInput"
+                      >Capacity For Dose-2 of Sputnik V for 45+<span
+                        class="text-danger"
+                        >*</span
+                      ></label
+                    >
+                    <span class="invalid-feedback ml-3"
+                      >Capacity for dose-2 of Sputnik V for 45+ is
+                      required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    name="slots7_name"
+                    ngModel
+                    class="form-control"
+                    placeholder="Enter slot
+                        timings"
+                    [value]="slots7"
+                  />
+                  <label for="floatingInput"
+                    >Enter slot timings seperated by comma
+                    <span class="text-danger">*</span></label
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- ------------------------------------ -->
+
+            <button class="btn btn-primary float-right mr-3 mb-3">
+              Update data
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div col-lg-2></div>
+  </div>
+</div>

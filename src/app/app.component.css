@@ -1,0 +1,92 @@
+.border {
+  margin-top: 0px;
+  margin-right: 0px;
+  width: 100%;
+  height: 50px;
+  border: 0px solid white;
+  box-shadow: 0px 10px 5px -10px grey;
+  text-align: center;
+  position: relative;
+}
+.img {
+  height: 50px;
+  display: inline-block;
+}
+.text {
+  display: inline-block;
+  top: 25%;
+  position: absolute;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 20px;
+}
+.card {
+  box-shadow: 10px 10px 5px grey;
+}
+.underline {
+  text-decoration: underline;
+}
+.btn {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
+  /* padding-bottom: 1px; */
+  /* border: 0px; */
+  /* box-shadow: 10px 10px 40px; */
+  background-color: #ce4257;
+  border-color: grey;
+}
+.forms {
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-color: grey;
+}
+.effects {
+  /* box-shadow: 10px 10px 5px; */
+}
+/* .colors {
+  color: #f9ed69;
+  background-color: #f08a5d;
+} */
+a {
+  font-size: 5px;
+}
+.covidSize {
+  font-size: 2em;
+}
+.totalSize {
+  font-size: 20px;
+}
+@media (min-width: 200px) {
+  .singleLine {
+    display: inline-block;
+  }
+}
+@media (max-width: 768px) {
+  .leftAlignment {
+    width: 100%;
+  }
+}
+ul > li > a {
+  font-size: 20px;
+}
+ul > li > a:hover {
+  text-decoration: underline;
+}
+ul > li > a:active {
+  text-decoration: underline;
+}
+.bgStyle {
+  background-color: black;
+  color: white;
+}
+.nav-link,
+.colors {
+  color: white;
+}
+.rightAlignment {
+  float: right;
+}

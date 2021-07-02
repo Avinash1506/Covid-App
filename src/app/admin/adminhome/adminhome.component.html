@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-md p-0 effects bgStyle">
+  <div class="navbar-header totalSize">
+    <fa-icon [icon]="faVirus" size="2x"></fa-icon>
+    <a class="navbar-brand colors covidSize" routerLink="adminhome">Covid-19</a>
+  </div>
+  <button
+    class="navbar-toggler bg-dark"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div
+    class="collapse navbar-collapse mb-2 mt-2 leftAlignment"
+    id="navbarSupportedContent"
+  >
+    <ul class="nav navbar-nav navbar-right ms-auto">
+      <li class="nav-item active">
+        <a class="nav-link cases" routerLink="data">Data</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link vaccine" routerLink="admindashboard">dashboard</a>
+      </li>
+      <li class="nav-item active" *ngIf="!val">
+        <a class="nav-link login" routerLink="adminlogin">Login</a>
+      </li>
+      <li class="nav-item active" *ngIf="val">
+        <a class="nav-link" routerLink="" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

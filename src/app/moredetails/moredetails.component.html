@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="aligning">
+    <!-- <div class="card">
+      <div class="display-6 text-center d-inline">
+        Hospital Name:
+        <div class="hospitalname"></div>
+      </div>
+      <div class="d-block">
+        <div class="first float-left d-inline">
+          State Name:
+          <div class="statename"></div>
+        </div>
+        <div class="second float-right d-inline">
+          District Name:
+          <div class="districtname"></div>
+        </div>
+      </div>
+      <div class="ctralign d-inline">
+        <div class="">
+          Vaccine:
+          <div class="vaccinename"></div>
+        </div>
+        <div class="d-inline">
+          Date:
+          <div class="date"></div>
+        </div>
+        <div class="slot">Slots:</div>
+      </div>
+    </div> -->
+    <div class="card mt-3">
+      <div class="card-header text-center">
+        <div class="d-inline"><strong>Hospital Name:</strong></div>
+        <div class="hospitalname d-inline">{{ hospitalName }}</div>
+      </div>
+      <div class="card-body mx-auto">
+        <tr>
+          <td class="text-right">
+            <strong class="mr-1">Vaccine:</strong>
+          </td>
+          <td class="text-left vaccine">{{ vaccine }}</td>
+        </tr>
+        <tr>
+          <td class="text-right"><strong class="mr-1">Date:</strong></td>
+          <td class="text-left date">{{ date }}</td>
+        </tr>
+        <tr>
+          <td class="text-right">
+            <strong class="mr-1">District:</strong>
+          </td>
+          <td class="text-left districtname">{{ districtName }}</td>
+        </tr>
+        <tr>
+          <td class="text-right"><strong class="mr-1">State:</strong></td>
+          <td class="text-left statename">{{ stateName }}</td>
+        </tr>
+        <!-- <tr>
+          <td class="text-right"><strong class="mr-1">Slot:</strong></td>
+          <td class="text-left slot">
+          </td>
+        </tr> -->
+        <form
+          #formval="ngForm"
+          (ngSubmit)="redirectToSuccessPage(formval.value)"
+        >
+          <div>slot:</div>
+          <div class="slot" *ngFor="let s of slots; let indexOfElement = index">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                ngModel
+                name="slot"
+                [value]="s"
+              />
+              <label class="form-check-label" for="">
+                {{ s }}
+              </label>
+            </div>
+          </div>
+          <button class="btn btn-primary">Book a Slot</button>
+        </form>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+  <!--  -->
+</div>

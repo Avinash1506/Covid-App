@@ -1,0 +1,191 @@
+<div class="container flex-display">
+  <button
+    type="button"
+    id="bt"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    hidden
+  >
+    Launch demo modal
+  </button>
+  <!--  -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Unauthorized Access
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="navigateToLogin()"
+          ></button>
+        </div>
+        <div class="modal-body">You need to login before accessing this</div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            (click)="navigateToLogin()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mx-auto">
+    <div class="row mt-5">
+      <div class="col-lg-4">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front text-center d-flex">
+              <strong>Profile</strong>
+            </div>
+            <div class="flip-card-back d-flex">
+              <div>
+                <div>E-mail: {{ email }}</div>
+                <div>Mobile number: {{ mnumber }}</div>
+                <div>Name: {{ name }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="flip-card">
+          <!-- <div *ngIf="firstDoseExistance; else elseBlock1"> -->
+          <div class="flip-card-inner">
+            <div class="flip-card-front text-center d-flex">
+              <strong>First Dose</strong>
+            </div>
+            <div class="flip-card-back">
+              <div
+                class="text-center d-flex"
+                *ngIf="firstDoseExistance; else elseBlock1"
+              >
+                <div>
+                  <tr>
+                    <td class="text-right mr-1">
+                      <strong class="mr-1">Date:</strong>
+                    </td>
+                    <td class="text-left">{{ fdate }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-right mr-1">
+                      <strong class="mr-1">Vaccine:</strong>
+                    </td>
+                    <td class="text-left">{{ fvaccine }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-right mr-1">
+                      <strong class="mr-1">Slot:</strong>
+                    </td>
+                    <td class="text-left">{{ fslot }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-right mr-1">
+                      <strong class="mr-1">State:</strong>
+                    </td>
+                    <td class="text-left">{{ fstateName }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-right mr-1">
+                      <strong class="mr-1">Center:</strong>
+                    </td>
+                    <td class="text-left">{{ fcenterName }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-right mr-1">
+                      <strong class="mr-1">District:</strong>
+                    </td>
+                    <td class="text-left">{{ fdistrictName }}</td>
+                  </tr>
+                </div>
+              </div>
+              <!-- </div> -->
+              <ng-template #elseBlock1>
+                First Dose is not taken yet
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="flip-card">
+          <!-- <div *ngIf="secondDoseExistance; else elseBlock2"> -->
+          <div class="flip-card-inner">
+            <div class="flip-card-front text-center d-flex">
+              <strong>Second Dose</strong>
+            </div>
+            <div class="flip-card-back">
+              <div
+                class="text-center d-flex"
+                *ngIf="secondDoseExistance; else elseBlock2"
+              >
+                <div>
+                  <tr>
+                    <td class="text-right">
+                      <strong class="mr-1">Date:</strong>
+                    </td>
+                    <td class="text-left">{{ sdate }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">
+                      <strong class="mr-1">Vaccine:</strong>
+                    </td>
+                    <td class="text-left">{{ svaccine }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">
+                      <strong class="mr-1">Slot:</strong>
+                    </td>
+                    <td class="text-left">{{ sslot }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">
+                      <strong class="mr-1">State:</strong>
+                    </td>
+                    <td class="text-left">{{ sstateName }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">
+                      <strong class="mr-1">Center:</strong>
+                    </td>
+                    <td class="text-left">{{ scenterName }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">
+                      <strong class="mr-1">District:</strong>
+                    </td>
+                    <td class="text-left">{{ sdistrictName }}</td>
+                  </tr>
+                </div>
+              </div>
+              <!-- </div> -->
+              <ng-template #elseBlock2>
+                <div *ngIf="firstDoseExistance; else elseBlock3">
+                  No of days left before taking second dose is {{ noOfDays }}
+                </div>
+                <ng-template #elseBlock3>
+                  Second Dose is not taken yet
+                </ng-template>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

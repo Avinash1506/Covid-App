@@ -1,0 +1,40 @@
+a {
+  text-decoration: none;
+}
+input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  border-radius: 0%;
+}
+input:active {
+  border-color: white;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: 0px 0px orange;
+}
+input:invalid:focus {
+  box-shadow: 0px 0px orange;
+}
+hr {
+  width: 30%;
+  margin: auto;
+  background-color: green;
+}
+.textbg {
+  background-color: #adc178;
+  color: #2a9d8f;
+  font-size: 65px;
+  /*
+  f72585
+  003566 
+  */
+}
+.btn {
+  border-radius: 45%;
+}

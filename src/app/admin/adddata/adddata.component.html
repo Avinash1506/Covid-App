@@ -1,0 +1,838 @@
+<div class="container">
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+        <form #formdata="ngForm" (ngSubmit)="addData(formdata)" class="form">
+          <div class="card p-0">
+            <div class="card-body p-0">
+              <div class="text-center textbg">Add Data</div>
+              <!-- <br /> -->
+              <div class="row">
+                <div class="col-lg-6">
+                  <select
+                    (change)="getState($event)"
+                    class="custom-select select-picker mt-3 empty"
+                    ngModel
+                    name="state"
+                    required
+                    #statename1="ngModel"
+                    [class.is-invalid]="statename1.invalid && statename1.touched"
+                  >
+                    <option value="" selected disabled>Select a state</option>
+                    <!-- <option value="Monday" class="data-icon">Monday</option>
+                          <option value="Tuesday">Tuesday</option>
+                          <option value="Wednesday">Wednesday</option>
+                          <option value="Thursday">Thursday</option>
+                          <option value="Friday">Friday</option> -->
+                    <option
+                      [value]="state['state_id']"
+                      *ngFor="let state of statesArray"
+                    >
+                      {{ state["state_name"] }}
+                    </option>
+                  </select>
+                  <span
+                    class="invalid-feedback ml-3"
+                    *ngIf="statename1.invalid && statename1.touched"
+                    >State name is required</span
+                  >
+                </div>
+                <div class="col-lg-6">
+                  <select
+                    class="custom-select select-picker mt-3 empty"
+                    ngModel
+                    name="district_id"
+                    [disabled]="!isSelected"
+                    required
+                    #districtname1="ngModel"
+                    [class.is-invalid]="
+                      districtname1.invalid && districtname1.touched
+                    "
+                  >
+                    <option value="" selected disabled>Select a District</option>
+                    <!-- <option value="Monday" class="data-icon">Monday</option>
+                          <option value="Tuesday">Tuesday</option>
+                          <option value="Wednesday">Wednesday</option>
+                          <option value="Thursday">Thursday</option>
+                          <option value="Friday">Friday</option> -->
+                    <option
+                      [value]="district['district_id']"
+                      *ngFor="let district of districtsArray"
+                    >
+                      {{ district["district_name"] }}
+                    </option>
+                  </select>
+                  <span
+                    class="invalid-feedback ml-3"
+                    *ngIf="districtname1.invalid && districtname1.touched"
+                    >District name is required</span
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="pincode"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Pincode"
+                      #pincode1="ngModel"
+                      [class.is-invalid]="pincode1.invalid && pincode1.touched"
+                    />
+                    <label for="floatingInput"
+                      >Pincode <span class="text-danger">*</span></label
+                    >
+                    <span
+                      class="invalid-feedback ml-3"
+                      *ngIf="pincode1.invalid && pincode1.touched"
+                      >Pincode is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="center_id"
+                      ngModel
+                      required
+                      #centerid1="ngModel"
+                      placeholder="Center Id"
+                      class="form-control"
+                      [class.is-invalid]="centerid1.invalid && centerid1.touched"
+                    />
+                    <label for="floatingInput"
+                      >Center Id <span class="text-danger">*</span></label
+                    >
+                    <span
+                      class="invalid-feedback ml-3"
+                      *ngIf="centerid1.invalid && centerid1.touched"
+                      >Center Id is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="centername"
+                      ngModel
+                      required
+                      class="form-control"
+                      #centername1="ngModel"
+                      placeholder="Center Name"
+                      [class.is-invalid]="
+                        centername1.invalid && centername1.touched
+                      "
+                    />
+                    <label for="floatingInput"
+                      >Center Name <span class="text-danger">*</span></label
+                    >
+                    <span
+                      class="invalid-feedback ml-3"
+                      *ngIf="centername1.invalid && centername1.touched"
+                      >Center Name is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="centeraddress"
+                      ngModel
+                      required
+                      class="form-control"
+                      #centeraddress1="ngModel"
+                      placeholder="Center Address"
+                      [class.is-invalid]="
+                        centeraddress1.invalid && centeraddress1.touched
+                      "
+                    />
+                    <label for="floatingInput"
+                      >Center Address <span class="text-danger">*</span></label
+                    >
+                    <span
+                      class="invalid-feedback ml-3"
+                      *ngIf="centeraddress1.invalid && centeraddress1.touched"
+                      >Center Address is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="slots"
+                      ngModel
+                      required
+                      class="form-control"
+                      #slots1="ngModel"
+                      placeholder="Enter slot timings"
+                      [class.is-invalid]="slots1.invalid && slots1.touched"
+                    />
+                    <label for="floatingInput"
+                      >Enter slot timings seperated by comma
+                      <span class="text-danger">*</span></label
+                    >
+                    <span
+                      class="invalid-feedback ml-3"
+                      *ngIf="slots1.invalid && slots1.touched"
+                      >Slot timings are required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="d-inline form-floating">
+                    <div class="mr-1 ml-3 pt-3">
+                      Hospital:<span class="text-danger">*</span>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                      <input
+                        class="form-check-input border"
+                        type="radio"
+                        name="hospital"
+                        id="government1"
+                        value="government"
+                        required
+                        ngModel
+                        #hospital1="ngModel"
+                        [class.is-invalid]="
+                          hospital1.invalid && hospital1.touched
+                        "
+                      />
+                      <label class="form-check-label" for="government1"
+                        >Government</label
+                      >
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                      <input
+                        class="form-check-input border"
+                        type="radio"
+                        name="hospital"
+                        id="private1"
+                        value="private"
+                        required
+                        ngModel
+                        #hospital1="ngModel"
+                        [class.is-invalid]="
+                          hospital1.invalid && hospital1.touched
+                        "
+                      />
+                      <label class="form-check-label" for="private1"
+                        >Private</label
+                      >
+                    </div>
+                    <span
+                      class="invalid-feedback ml-3"
+                      *ngIf="hospital1.invalid && hospital1.touched"
+                      >Hospital Type is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="covaxin_cost"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Covaxin Cost"
+                      #covaxin1="ngModel"
+                      [class.is-invalid]="covaxin1.invalid && covaxin1.touched"
+                    />
+                    <label for="floatingInput"
+                      >Covaxin Cost <span class="text-danger">*</span></label
+                    >
+                    <span
+                      class="invalid-feedback ml-3"
+                      *ngIf="covaxin1.invalid && covaxin1.touched"
+                      >Cost is required</span
+                    >
+                    <!-- </div>
+            </div> -->
+                    <!-- -------------------- -->
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="covishield_cost"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Covishield Cost"
+                      #covishield1="ngModel"
+                      [class.is-invalid]="
+                        covishield1.invalid && covishield1.touched
+                      "
+                    />
+                    <label for="floatingInput"
+                      >Covishield Cost <span class="text-danger">*</span></label
+                    >
+                    <span
+                      class="invalid-feedback ml-3"
+                      *ngIf="covishield1.invalid && covishield1.touched"
+                      >Cost is required</span
+                    >
+                    <!-- </div>
+            </div> -->
+                    <!-- -------------------- -->
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      name="sputnikv_cost"
+                      ngModel
+                      required
+                      class="form-control"
+                      placeholder="Sputnik V Cost"
+                      #sputnikv1="ngModel"
+                      [class.is-invalid]="sputnikv1.invalid && sputnikv1.touched"
+                    />
+                    <label for="floatingInput"
+                      >Sputnik V Cost <span class="text-danger">*</span></label
+                    >
+                    <span
+                      class="invalid-feedback ml-3"
+                      *ngIf="sputnikv1.invalid && sputnikv1.touched"
+                      >Cost is required</span
+                    >
+                    <!-- </div>
+            </div> -->
+                    <!-- -------------------- -->
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row">
+                <div class="col-lg-6"> -->
+              <!-- <div class="d-inline form-floating">
+                        <div class="mr-1 ml-3 pt-3">
+                          Vaccine:<span class="text-danger">*</span>
+                        </div>
+                        <div class="form-check form-check-inline ml-3">
+                          <input
+                            class="form-check-input border"
+                            type="checkbox"
+                            id="vaccinecheckbox1"
+                            name="covaxin"
+                            value="true"
+                          />
+                          <label class="form-check-label" for="vaccinecheckbox1"
+                            >Covaxin</label
+                          >
+                        </div>
+                        <div class="form-check form-check-inline ml-3">
+                          <input
+                            class="form-check-input border"
+                            type="checkbox"
+                            id="vaccinecheckbox2"
+                            name="covishield"
+                            value="true"
+                          />
+                          <label class="form-check-label" for="vaccinecheckbox2"
+                            >Covishield</label
+                          >
+                        </div>
+                      </div> -->
+              <!-- --------------------- -->
+              <!-- <div class="d-inline form-floating">
+                    <div class="mr-1 ml-3 pt-3">
+                      Vaccine:<span class="text-danger">*</span>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                      <input
+                        class="form-check-input border"
+                        type="radio"
+                        name="vaccine"
+                        id="covaxin1"
+                        value="covaxin"
+                        required
+                        ngModel
+                        #vaccine1="ngModel"
+                        [class.is-invalid]="vaccine1.invalid && vaccine1.touched"
+                      />
+                      <label class="form-check-label" for="covaxin1"
+                        >Covaxin</label
+                      >
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                      <input
+                        class="form-check-input border"
+                        type="radio"
+                        name="vaccine"
+                        id="covaxin2"
+                        value="covishield"
+                        required
+                        ngModel
+                        #vaccine1="ngModel"
+                        [class.is-invalid]="vaccine1.invalid && vaccine1.touched"
+                      />
+                      <label class="form-check-label" for="covaxin2"
+                        >Covishield</label
+                      >
+                    </div>
+                    <span
+                      class="invalid-feedback ml-3"
+                      *ngIf="hospital1.invalid && hospital1.touched"
+                      >Vaccine is required</span
+                    >
+                  </div> -->
+              <!-- ------------------ -->
+              <div>
+                <div class="mr-1 ml-3 pt-3">
+                  <strong>Vaccine:</strong><span class="text-danger">*</span>
+                </div>
+  
+                <div class="mr-1 ml-3 pt-3">
+                  <strong>Covaxin:</strong><span class="text-danger">*</span>
+                </div>
+                <!-- Row-2 Covaxin-->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose1_capacity_covaxin_18+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose1capacity118covaxin="ngModel"
+                        placeholder="Capacity For Dose-1"
+                        [class.is-invalid]="
+                          dose1capacity118covaxin.invalid &&
+                          dose1capacity118covaxin.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-1 of Covaxin for 18+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose1capacity118covaxin.invalid &&
+                          dose1capacity118covaxin.touched
+                        "
+                        >Capacity for dose-1 of Covaxin for 18+ is required</span
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose2_capacity_covaxin_18+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose2capacity118covaxin="ngModel"
+                        placeholder="Capacity For Dose-2"
+                        [class.is-invalid]="
+                          dose2capacity118covaxin.invalid &&
+                          dose2capacity118covaxin.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-2 of Covaxin for 18+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose2capacity118covaxin.invalid &&
+                          dose2capacity118covaxin.touched
+                        "
+                        >Capacity for dose-2 of Covaxin for 18+ is required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- Row-3 Covaxin-->
+                <div class="row" *ngIf="displayCovaxin && displaycovaxin45plus">
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose1_capacity_covaxin_45+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose1capacity145covaxin="ngModel"
+                        placeholder="Capacity For Dose-1"
+                        [class.is-invalid]="
+                          dose1capacity145covaxin.invalid &&
+                          dose1capacity145covaxin.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-1 of Covaxin for 45+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose1capacity145covaxin.invalid &&
+                          dose1capacity145covaxin.touched
+                        "
+                        >Capacity for dose-1 of Covaxin for 45+ is required</span
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose2_capacity_covaxin_45+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose2capacity145covaxin="ngModel"
+                        placeholder="Capacity For Dose-2"
+                        [class.is-invalid]="
+                          dose2capacity145covaxin.invalid &&
+                          dose2capacity145covaxin.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-2 of Covaxin for 45+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose2capacity145covaxin.invalid &&
+                          dose2capacity145covaxin.touched
+                        "
+                        >Capacity for dose-2 of Covaxin for 45+ is required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- Vaccine name Covishield -->
+  
+                <div class="mr-1 ml-3 pt-3">
+                  <strong>Covishield:</strong><span class="text-danger">*</span>
+                </div>
+                <!-- Row-2 Covishield -->
+                <div
+                  class="row"
+                  *ngIf="displayCovishield && displaycovishield18plus"
+                >
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose1_capacity_covishield_18+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose1capacity118covishield="ngModel"
+                        placeholder="Capacity For Dose-1"
+                        [class.is-invalid]="
+                          dose1capacity118covishield.invalid &&
+                          dose1capacity118covishield.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-1 of Covshield for 18+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose1capacity118covishield.invalid &&
+                          dose1capacity118covishield.touched
+                        "
+                        >Capacity for dose-1 of Covishield for 18+ is
+                        required</span
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose2_capacity_covishield_18+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose2capacity118covishield="ngModel"
+                        placeholder="Capacity For Dose-2"
+                        [class.is-invalid]="
+                          dose2capacity118covishield.invalid &&
+                          dose2capacity118covishield.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-2 of Covishield for 18+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose2capacity118covishield.invalid &&
+                          dose2capacity118covishield.touched
+                        "
+                        >Capacity for dose-2 of Covishield for 18+ is
+                        required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- Row-3 Covishield -->
+                <div
+                  class="row"
+                  *ngIf="displayCovishield && displaycovishield45plus"
+                >
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose1_capacity_covishield_45+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose1capacity145covishield="ngModel"
+                        placeholder="Capacity For Dose-1"
+                        [class.is-invalid]="
+                          dose1capacity145covishield.invalid &&
+                          dose1capacity145covishield.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-1 of Covshield for 45+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose1capacity145covishield.invalid &&
+                          dose1capacity145covishield.touched
+                        "
+                        >Capacity for dose-1 of Covishield for 45+ is
+                        required</span
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose2_capacity_covishield_45+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose2capacity145covishield="ngModel"
+                        placeholder="Capacity For Dose-2"
+                        [class.is-invalid]="
+                          dose2capacity145covishield.invalid &&
+                          dose2capacity145covishield.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-2 of Covishield for 45+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose2capacity145covishield.invalid &&
+                          dose2capacity145covishield.touched
+                        "
+                        >Capacity for dose-2 of Covishield for 45+ is
+                        required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- Check Box for Sputnik V -->
+  
+                <div class="mr-1 ml-3 pt-3">
+                  <strong>Sputnik V:</strong><span class="text-danger">*</span>
+                </div>
+                <!-- Row-2 Sputnik V -->
+                <div class="row" *ngIf="displaySputnikv && displaysputnikv18plus">
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose1_capacity_sputnikv_18+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose1capacity118sputnikv="ngModel"
+                        placeholder="Capacity For Dose-1"
+                        [class.is-invalid]="
+                          dose1capacity118sputnikv.invalid &&
+                          dose1capacity118sputnikv.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-1 of Sputnik V for 18+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose1capacity118sputnikv.invalid &&
+                          dose1capacity118sputnikv.touched
+                        "
+                        >Capacity for dose-1 of Sputnik V for 18+ is
+                        required</span
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose2_capacity_sputnikv_18+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose2capacity118sputnikv="ngModel"
+                        placeholder="Capacity For Dose-2"
+                        [class.is-invalid]="
+                          dose2capacity118sputnikv.invalid &&
+                          dose2capacity118sputnikv.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-2 of Sputnik V for 18+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose2capacity118sputnikv.invalid &&
+                          dose2capacity118sputnikv.touched
+                        "
+                        >Capacity for dose-2 of Sputnik V for 18+ is
+                        required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- Row-3 Sputnik V -->
+                <div class="row" *ngIf="displaySputnikv && displaysputnikv45plus">
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose1_capacity_sputnikv_45+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose1capacity145sputnikv="ngModel"
+                        placeholder="Capacity For Dose-1"
+                        [class.is-invalid]="
+                          dose1capacity145sputnikv.invalid &&
+                          dose1capacity145sputnikv.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-1 of Sputnik V for 45+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose1capacity145sputnikv.invalid &&
+                          dose1capacity145sputnikv.touched
+                        "
+                        >Capacity for dose-1 of Sputnik V for 45+ is
+                        required</span
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        name="dose2_capacity_sputnikv_45+"
+                        ngModel
+                        required
+                        class="form-control"
+                        #dose2capacity145sputnikv="ngModel"
+                        placeholder="Capacity For Dose-2"
+                        [class.is-invalid]="
+                          dose2capacity145sputnikv.invalid &&
+                          dose2capacity145sputnikv.touched
+                        "
+                      />
+                      <label for="floatingInput"
+                        >Capacity For Dose-2 of Sputnik V for 45+<span
+                          class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <span
+                        class="invalid-feedback ml-3"
+                        *ngIf="
+                          dose2capacity145sputnikv.invalid &&
+                          dose2capacity145sputnikv.touched
+                        "
+                        >Capacity for dose-2 of Sputnik V for 45+ is
+                        required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <button class="btn btn-primary float-right mr-3 mb-3">
+                <!-- [disabled]="formdata.invalid" -->
+                Add data
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
+  </div>
+  

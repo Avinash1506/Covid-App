@@ -1,0 +1,155 @@
+<div>
+  <nav class="navbar navbar-expand-md effects bgStyle">
+    <!-- <div class="d-flex w-100"> -->
+    <!-- </div> -->
+    <!-- <div class="w-100"> -->
+    <div
+      class="collapse navbar-collapse mb-2 mt-2 leftAlignment"
+      id="navbarSupportedContent"
+    >
+      <!-- <form
+        #state1="ngForm"
+        class="form-inline"
+        (ngSubmit)="stateName(state1.value)"
+      >
+        <div class="form-group singleLine">
+          <input
+            type="text"
+            placeholder="Enter State name..."
+            ngModel
+            name="state"
+            class="form-control forms"
+          />
+          <button class="btn btn-outline-dark bnt-success d-inline float-right">
+            <fa-icon [icon]="faSearch"></fa-icon>
+          </button>
+        </div>
+      </form> -->
+      <!-- <div *ngIf="toShow"> -->
+      <form
+        #state1="ngForm"
+        class="form-inline ms-auto"
+        (ngSubmit)="stateName(state1.value)"
+      >
+        <div class="form-group row singleLine">
+          <!-- <div class="row"> -->
+          <div class="col-sm-10 p-0">
+            <input
+              type="text"
+              placeholder="Enter State name..."
+              ngModel
+              name="state"
+              class="form-control forms"
+            />
+          </div>
+          <div class="col-sm-2 p-0">
+            <button
+              class="btn btn-outline-dark bnt-success d-inline float-right"
+            >
+              <fa-icon [icon]="faSearch"></fa-icon>
+            </button>
+          </div>
+          <!-- </div> -->
+        </div>
+      </form>
+      <!-- </div> -->
+      <!-- </div> -->
+    </div>
+  </nav>
+  <div class="container">
+    <nav aria-label="breadcrumb" *ngIf="!(state == 'no state')" class="bg-none">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="" (click)="clearState()">India</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">{{ state }}</li>
+      </ol>
+    </nav>
+  </div>
+  <div
+    class="text-center display-4 text-success"
+    *ngIf="!(state == 'no state'); else country"
+  >
+    <fa-icon [icon]="faChartLine" class="mr-2"></fa-icon>Covid Cases
+    Distribution in {{ stateFromApi }}
+  </div>
+  <ng-template #country>
+    <div class="text-center display-4 text-success">
+      <fa-icon [icon]="faChartLine" class="mr-2"></fa-icon> Covid Cases
+      Distribution in India
+    </div>
+  </ng-template>
+  <div class="divChart1">
+    <canvas id="canvas1" width="1000" height="400"></canvas>
+    <!-- <div class="division"></div> -->
+    <!-- <hr /> -->
+  </div>
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5">
+      <div class="card">
+        <div class="card1">
+          <div class="divChart2">
+            <canvas id="canvas2" width="1000" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-sm-2"></div> -->
+    <div class="col-sm-5">
+      <div
+        class="text-center display-4 mb-4 text-primary verticalalignment"
+        *ngIf="!(state == 'no state'); else country1"
+      >
+        <div class="triangleright"></div>
+        Covid Cases Distribution in {{ stateFromApi }}
+      </div>
+      <ng-template #country1>
+        <div class="text-center display-4 text-success verticalalignment">
+          <div class="triangleright"></div>
+          Covid Cases Distribution in India
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5">
+      <!-- ---- -->
+      <div
+        class="text-center display-4 mb-4 text-primary verticalalignment"
+        *ngIf="!(state == 'no state'); else country2"
+      >
+        Active, deaths and recovered in {{ stateFromApi }}
+        <div class="triangleleft"></div>
+      </div>
+      <ng-template #country2>
+        <div class="text-center display-4 text-success verticalalignment">
+          Active, deaths and recovered in India
+          <div class="triangleleft"></div>
+        </div>
+      </ng-template>
+    </div>
+    <!-- <div class="col-sm-2"></div> -->
+    <div class="col-sm-5">
+      <div class="card">
+        <div class="card2">
+          <div class="divChart3">
+            <canvas id="canvas3" width="1000" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+</div>
+<!-- </div> -->
+<!-- <div class="card">
+        <div class="card2">
+          
+          <div class="divChart3">
+            <canvas id="canvas3" width="1000" height="400"></canvas>
+          </div>
+        </div>
+      </div> -->

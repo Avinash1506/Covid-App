@@ -1,0 +1,67 @@
+<div class="container topSpace">
+  <div class="text-center display-4 text-success topSpace">
+    Covid Cases Distribution (World)
+  </div>
+  <div class="forCards">
+    <div class="text-center">
+      <div class="row">
+        <div class="col-sm-3">
+          <!-- <div class="card11"> -->
+          <div class="card card1 cardEffects text-danger h-100 danger">
+            <h2>Active cases:</h2>
+            <h3>{{ active }}</h3>
+            <!-- </div> -->
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card card2 cardEffects text-primary h-100 primary">
+            <h2>Total cases:</h2>
+            <h3>{{ total }}</h3>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card card3 cardEffects text-secondary h-100 secondary">
+            <h2>Total deaths:</h2>
+            <h3>{{ deaths }}</h3>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card card4 cardEffects text-success h-100 success">
+            <h2>Total Recovered:</h2>
+            <h3>{{ recovered }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="forTables mt-4">
+        <div class="scrolling">
+          <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+              <tr>
+                <th>Country</th>
+                <th>Total</th>
+                <th>Active</th>
+                <th>Deaths</th>
+                <th>Recovered</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let data of arr" class="table-hover">
+              <tr>
+                <td class="table-primary">{{ data.country_name }}</td>
+                <td class="table-danger hover1">
+                  {{ data.total_cases }}
+                </td>
+                <td class="table-danger hover2">
+                  {{ data.active_cases }}
+                </td>
+                <td class="table-danger hover3">{{ data.deaths }}</td>
+                <td class="table-success hover4">
+                  {{ data.recovered }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
